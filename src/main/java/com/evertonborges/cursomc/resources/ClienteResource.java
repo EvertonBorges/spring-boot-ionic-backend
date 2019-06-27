@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.evertonborges.cursomc.domain.Cliente;
-import com.evertonborges.cursomc.domain.Cliente;
 import com.evertonborges.cursomc.dto.ClienteDTO;
 import com.evertonborges.cursomc.services.ClienteService;
 
@@ -37,9 +36,9 @@ public class ClienteResource {
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO categoriaDTO, @PathVariable Integer id) {
-		Cliente categoria = service.fromDTO(categoriaDTO);
-		categoria.setId(id);
-		categoria = service.update(categoria);
+		Cliente obj = service.fromDTO(categoriaDTO);
+		obj.setId(id);
+		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
 	}
 	

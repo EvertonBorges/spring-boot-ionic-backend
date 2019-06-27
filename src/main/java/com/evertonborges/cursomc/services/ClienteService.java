@@ -30,10 +30,10 @@ public class ClienteService {
 
 	
 	
-	public Cliente update(ClienteDTO clienteDTO) {
-		Cliente cliente = find(clienteDTO.getId());
-		updateData(cliente, clienteDTO);
-		return repo.save(cliente);
+	public Cliente update(Cliente obj) {
+		Cliente newObj = find(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
 	}
 	
 	public void delete(Integer id) {
@@ -58,8 +58,8 @@ public class ClienteService {
 		throw new UnsupportedOperationException();
 	}
 
-	private void updateData(Cliente cliente, ClienteDTO clienteDTO) {
-		cliente.setNome(clienteDTO.getNome());
-		cliente.setEmail(clienteDTO.getEmail());
+	private void updateData(Cliente newCliente, Cliente cliente) {
+		newCliente.setNome(cliente.getNome());
+		newCliente.setEmail(cliente.getEmail());
 	}
 }
