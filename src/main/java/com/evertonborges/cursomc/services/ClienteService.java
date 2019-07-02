@@ -10,7 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.evertonborges.cursomc.domain.Categoria;
 import com.evertonborges.cursomc.domain.Cidade;
 import com.evertonborges.cursomc.domain.Cliente;
 import com.evertonborges.cursomc.domain.Endereco;
