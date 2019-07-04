@@ -52,6 +52,14 @@ public class Pedido implements Serializable {
 		this.cliente = cliente;
 		this.enderedoDeEntrega = enderedoDeEntrega;
 	}
+	
+	public double getValorTotal() {
+		double valorTotal = 0.00;
+		for (ItemPedido ip: itens) {
+			valorTotal += ip.getSubTotal();
+		}
+		return valorTotal;
+	}
 
 	public Integer getId() {
 		return id;
