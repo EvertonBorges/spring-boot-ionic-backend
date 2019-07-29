@@ -122,8 +122,9 @@ public class DBService {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		
-		Pedido ped1 = new Pedido(null, sdf.parse("30/09/2019 10:32"), cli1, end1);
-		Pedido ped2 = new Pedido(null, sdf.parse("10/10/2019 19:35"), cli1, end2);
+		Pedido ped1 = new Pedido(null, sdf.parse("10/02/2019 10:32"), cli1, end1);
+		Pedido ped2 = new Pedido(null, sdf.parse("15/06/2019 19:35"), cli1, end2);
+		Pedido ped3 = new Pedido(null, sdf.parse("29/07/2019 10:39"), null, null);
 		
 		Pagamento pagto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);
 		ped1.setPagamento(pagto1);
@@ -131,23 +132,28 @@ public class DBService {
 		Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, sdf.parse("20/10/2019 00:00"), null);
 		ped2.setPagamento(pagto2);
 		
+		Pagamento pagto3 = new PagamentoComCartao(null, EstadoPagamento.PENDENTE, ped3, 6);
+		ped3.setPagamento(pagto3);
+		
 		cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
 		
-		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
-		pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2));
+		pedidoRepository.saveAll(Arrays.asList(ped1, ped2, ped3));
+		pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2, pagto3));
 		
 		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.00);
 		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
 		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
+		ItemPedido ip4 = new ItemPedido(ped3, p1, 150.00, 3, 2000.00);
 		
 		ped1.getItens().addAll(Arrays.asList(ip1, ip2));
 		ped2.getItens().addAll(Arrays.asList(ip3));
+		ped3.getItens().addAll(Arrays.asList(ip4));
 		
-		p1.getItens().addAll(Arrays.asList(ip1));
+		p1.getItens().addAll(Arrays.asList(ip1, ip4));
 		p2.getItens().addAll(Arrays.asList(ip3));
 		p3.getItens().addAll(Arrays.asList(ip2));
 		
-		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
+		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3, ip4));
 	}
 	
 }
