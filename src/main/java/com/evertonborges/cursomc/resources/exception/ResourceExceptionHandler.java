@@ -40,7 +40,7 @@ public class ResourceExceptionHandler {
 			error.addError(x.getField(), x.getDefaultMessage());
 		}
 		
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+		return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(error);
 	}
 	
 	@ExceptionHandler(AuthorizationException.class)

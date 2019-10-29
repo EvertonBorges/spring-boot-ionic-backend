@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.evertonborges.cursomc.domain.Categoria;
 import com.evertonborges.cursomc.domain.Pedido;
-import com.evertonborges.cursomc.dto.CategoriaDTO;
 import com.evertonborges.cursomc.services.PedidoService;
 
 @RestController
@@ -30,7 +28,7 @@ public class PedidoResource {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Pedido> find(@PathVariable Integer id) {
-		Pedido obj = service.find(id);		
+		Pedido obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
