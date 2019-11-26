@@ -9,7 +9,7 @@
 		<version>2.2.0.M3</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.evertonborges.cursomc</groupId>
+	<groupId>com.tcc</groupId>
 	<artifactId>cursomc</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>cursomc</name>
@@ -64,11 +64,6 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-mail</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
@@ -84,21 +79,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.amazonaws</groupId>
-			<artifactId>aws-java-sdk</artifactId>
-			<version>LATEST</version>
-		</dependency>
-
-		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>LATEST</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.imgscalr</groupId>
-			<artifactId>imgscalr-lib</artifactId>
-			<version>4.2</version>
 		</dependency>
 
 	</dependencies>

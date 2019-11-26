@@ -1,0 +1,81 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <title th:remove="all">Home</title>
+  </head>
+  <body>
+    <div class="container">
+	    
+	    <br><br>
+	    <div class="row justify-content-center" >
+	    	<div id="chartContainer" style="height: 300px; width: 75%;"></div>
+	    </div>
+    	
+    	<br><br>
+    	<div th:switch="${sensorStatus}" class="text-center">
+		  <div th:case="'Ruim'"><h1 class="text-danger">RUIM</h1></div>
+		  <div th:case="'Regular'"><h1 class="text-warning">REGULAR</h1></div>
+		  <div th:case="*"><h1 class="text-primary">BOM</h1></div>
+		</div>
+		
+		<br><br>
+		<h3 class="text-center">Detalhes do sensor</h3>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Data/Hora</th>
+					<th scope="col">Registro</th>
+					<th scope="col">Local</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="item : ${registros}">
+					<td scope="row" th:text="${item.id}">#</td>
+					<td th:text="${item.dataHora}">dataHora</td>
+					<td th:text="${item.registro} + ' ' + ${item.unidade.descricao}">registro</td>
+					<td th:text="${item.sublocal}">sublocal</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	<script th:inline="javascript">
+		jQuery(function ($) {
+			var datas = [];
+			
+			/*<![CDATA[*/
+				/*[# th:each="item : ${registros}"]*/
+					datas.push({ y: /*[[${item.registro}]]*/ });
+				/*[/]*/
+			/*]]>*/	
+	            
+	        $(function () {
+				var chart = new CanvasJS.Chart("chartContainer", {
+					animationEnabled: true,
+					theme: "light2",
+					axisY:{
+						includeZero: false
+					},
+					data: [{
+						type: "line",
+						dataPoints: datas
+					}]
+				});
+				chart.render();
+			});
+	    });
+	</script>
+  </body>
+</html>
